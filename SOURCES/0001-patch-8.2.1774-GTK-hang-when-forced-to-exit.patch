@@ -1,0 +1,37 @@
+From 32fbc4f247a31e35ade0939542e11aa033a2554f Mon Sep 17 00:00:00 2001
+From: Bram Moolenaar <Bram@vim.org>
+Date: Tue, 29 Sep 2020 22:16:09 +0200
+Subject: [PATCH] patch 8.2.1774: GTK: hang when forced to exit
+
+Problem:    GTK: hang when forced to exit.
+Solution:   Do not clean up "mainwin" when really_exiting is set.
+            (Zdenek Dohnal, closes #7042)
+---
+ src/gui_gtk_x11.c | 7 +++++--
+ src/version.c     | 2 ++
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui_gtk_x11.c b/src/gui_gtk_x11.c
+index fe1ac5878..ecd2d887f 100644
+--- a/src/gui_gtk_x11.c
++++ b/src/gui_gtk_x11.c
+@@ -4381,11 +4381,14 @@ gui_mch_open(void)
+     return OK;
+ }
+ 
+-
++/*
++ * Clean up for when exiting Vim.
++ */
+     void
+ gui_mch_exit(int rc UNUSED)
+ {
+-    if (gui.mainwin != NULL)
++    // Clean up, unless we don't want to invoke free().
++    if (gui.mainwin != NULL && !really_exiting)
+ 	gtk_widget_destroy(gui.mainwin);
+ }
+ 
+-- 
+2.26.2
+
