@@ -21,7 +21,7 @@ Summary: The VIM editor
 URL:     http://www.vim.org/
 Name: vim
 Version: %{baseversion}.%{patchlevel}
-Release: 9.1%{?dist}
+Release: 9.4%{?dist}
 License: Vim
 Group: Applications/Editors
 Source0: ftp://ftp.vim.org/pub/vim/unix/vim-%{baseversion}.tar.bz2
@@ -717,6 +717,54 @@ Patch4009: vim-7.4-CVE-2026-57456.patch
 Patch4010: vim-7.4-CVE-2026-73078.patch
 Patch4011: vim-7.4-CVE-2026-73073.patch
 Patch4012: vim-7.4-CVE-2026-73076.patch
+Patch4013: vim-7.4-CVE-2022-1621.patch
+Patch4014: vim-7.4-CVE-2022-2126.patch
+Patch4015: vim-7.4-CVE-2022-2287.patch
+Patch4016: vim-7.4-CVE-2022-4292.patch
+Patch4017: vim-7.4-CVE-2026-55693.patch
+Patch4018: vim-7.4-CVE-2026-73072.patch
+Patch4019: vim-7.4-CVE-2022-3520.patch
+Patch4020: vim-7.4-CVE-2021-3778.patch
+Patch4021: vim-7.4-CVE-2021-3796.patch
+Patch4022: vim-7.4-CVE-2021-3927.patch
+Patch4023: vim-7.4-CVE-2021-3984.patch
+Patch4024: vim-7.4-CVE-2021-4019.patch
+Patch4025: vim-7.4-CVE-2022-0359.patch
+Patch4026: vim-7.4-CVE-2022-1619.patch
+Patch4027: vim-7.4-CVE-2022-1629.patch
+Patch4028: vim-7.4-CVE-2022-2124.patch
+Patch4029: vim-7.4-CVE-2022-2125.patch
+Patch4030: vim-7.4-CVE-2022-2206.patch
+Patch4031: vim-7.4-CVE-2022-2207.patch
+Patch4032: vim-7.4-CVE-2022-2210.patch
+Patch4033: vim-7.4-CVE-2022-2284.patch
+Patch4034: vim-7.4-CVE-2022-2285.patch
+Patch4035: vim-7.4-CVE-2022-2286.patch
+Patch4036: vim-7.4-CVE-2022-2344.patch
+Patch4037: vim-7.4-CVE-2022-2345.patch
+Patch4038: vim-7.4-CVE-2022-2571.patch
+Patch4039: vim-7.4-CVE-2022-2581.patch
+Patch4040: vim-7.4-CVE-2022-3234.patch
+Patch4041: vim-7.4-CVE-2022-3235.patch
+Patch4042: vim-7.4-CVE-2022-3256.patch
+Patch4043: vim-7.4-CVE-2022-3591.patch
+Patch4044: vim-7.4-CVE-2023-0049.patch
+Patch4045: vim-7.4-CVE-2023-0054.patch
+Patch4046: vim-7.4-CVE-2023-0288.patch
+Patch4047: vim-7.4-CVE-2023-0433.patch
+Patch4048: vim-7.4-CVE-2023-4751.patch
+Patch4049: vim-7.4-CVE-2023-4750.patch
+Patch4051: vim-7.4-CVE-2023-4781.patch
+Patch4055: vim-7.4-CVE-2022-2129.patch
+Patch4052: vim-7.4-CVE-2021-4166.patch
+Patch4053: vim-7.4-CVE-2021-4192.patch
+Patch4054: vim-7.4-CVE-2022-1154.patch
+Patch4056: vim-7.4-CVE-2022-2175.patch
+Patch4057: vim-7.4-CVE-2022-2182.patch
+Patch4058: vim-7.4-CVE-2022-2343.patch
+Patch4059: vim-7.4-CVE-2022-3296.patch
+Patch4060: vim-7.4-CVE-2022-3352.patch
+Patch4061: vim-7.4-CVE-2022-3705.patch
 
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python-devel ncurses-devel gettext perl-devel
@@ -1521,6 +1569,54 @@ perl -pi -e "s,bin/nawk,bin/awk,g" runtime/tools/mve.awk
 %patch4010 -p1
 %patch4011 -p1
 %patch4012 -p1
+%patch4013 -p1
+%patch4014 -p1
+%patch4015 -p1
+%patch4016 -p1
+%patch4017 -p1
+%patch4018 -p1
+%patch4019 -p1
+%patch4020 -p1
+%patch4021 -p1
+%patch4022 -p1
+%patch4023 -p1
+%patch4024 -p1
+%patch4025 -p1
+%patch4026 -p1
+%patch4027 -p1
+%patch4028 -p1
+%patch4029 -p1
+%patch4030 -p1
+%patch4031 -p1
+%patch4032 -p1
+%patch4033 -p1
+%patch4034 -p1
+%patch4035 -p1
+%patch4036 -p1
+%patch4037 -p1
+%patch4038 -p1
+%patch4039 -p1
+%patch4040 -p1
+%patch4041 -p1
+%patch4042 -p1
+%patch4043 -p1
+%patch4044 -p1
+%patch4045 -p1
+%patch4046 -p1
+%patch4047 -p1
+%patch4048 -p1
+%patch4049 -p1
+%patch4051 -p1
+%patch4055 -p1
+%patch4052 -p1
+%patch4053 -p1
+%patch4054 -p1
+%patch4056 -p1
+%patch4057 -p1
+%patch4058 -p1
+%patch4059 -p1
+%patch4060 -p1
+%patch4061 -p1
 
 perl -pi -e "s/test71.out//" src/testdir/Makefile
 
@@ -2018,6 +2114,23 @@ rm -rf %{buildroot}
 %{_datadir}/icons/hicolor/*/apps/*
 
 %changelog
+* Fri Nov 20 2026 Jeff Uphoff <juphoff@ciq.com> - 2:7.4.629-9.4
+- Remediate CVE-2021-4166, CVE-2021-4192, CVE-2022-1154, CVE-2022-2175,
+  CVE-2022-2182, CVE-2022-2343, CVE-2022-3296, CVE-2022-3352, CVE-2022-3705
+
+* Fri Nov 20 2026 Jeff Uphoff <juphoff@ciq.com> - 2:7.4.629-9.3
+- Remediate CVE-2021-3778, CVE-2021-3796, CVE-2021-3927, CVE-2021-3984,
+  CVE-2021-4019, CVE-2022-0359, CVE-2022-1619, CVE-2022-1629, CVE-2022-1785,
+  CVE-2022-2124, CVE-2022-2125, CVE-2022-2129, CVE-2022-2206, CVE-2022-2207,
+  CVE-2022-2210, CVE-2022-2284, CVE-2022-2285, CVE-2022-2286, CVE-2022-2344,
+  CVE-2022-2345, CVE-2022-2571, CVE-2022-2581, CVE-2022-3234, CVE-2022-3235,
+  CVE-2022-3256, CVE-2022-3520, CVE-2022-3591, CVE-2023-0049, CVE-2023-0054,
+  CVE-2023-0288, CVE-2023-0433, CVE-2023-4750, CVE-2023-4751, CVE-2023-4781
+
+* Fri Nov 20 2026 Jeff Uphoff <juphoff@ciq.com> - 2:7.4.629-9.2
+- Remediate CVE-2022-1621, CVE-2022-2126, CVE-2022-2287, CVE-2022-4292,
+  CVE-2026-55693, CVE-2026-73072
+
 * Thu Nov 19 2026 Jeff Uphoff <juphoff@ciq.com> - 2:7.4.629-9.1
 - Remediate CVE-2026-26269, CVE-2026-33412, CVE-2026-41411, CVE-2026-43961,
   CVE-2026-46483, CVE-2026-47162, CVE-2026-47167, CVE-2026-52858,
