@@ -21,7 +21,7 @@ Summary: The VIM editor
 URL:     http://www.vim.org/
 Name: vim
 Version: %{baseversion}.%{patchlevel}
-Release: 9%{?dist}
+Release: 9.1%{?dist}
 License: Vim
 Group: Applications/Editors
 Source0: ftp://ftp.vim.org/pub/vim/unix/vim-%{baseversion}.tar.bz2
@@ -704,6 +704,19 @@ Patch3021: 0001-patch-8.1.1365-source-command-doesn-t-check-for-the-.patch
 # 1833186 - gvim consums 100% cpu under certain condition
 Patch3022: 0001-patch-8.2.1774-GTK-hang-when-forced-to-exit.patch
 Patch4000: CVE-2026-25749.patch
+# CIQ CVE backports from upstream vim (2026-11)
+Patch4001: vim-7.4-CVE-2026-26269.patch
+Patch4002: vim-7.4-CVE-2026-33412.patch
+Patch4003: vim-7.4-CVE-2026-41411.patch
+Patch4004: vim-7.4-CVE-2026-46483.patch
+Patch4005: vim-7.4-CVE-2026-43961.patch
+Patch4006: vim-7.4-CVE-2026-47162.patch
+Patch4007: vim-7.4-CVE-2026-47167.patch
+Patch4008: vim-7.4-CVE-2026-52858.patch
+Patch4009: vim-7.4-CVE-2026-57456.patch
+Patch4010: vim-7.4-CVE-2026-73078.patch
+Patch4011: vim-7.4-CVE-2026-73073.patch
+Patch4012: vim-7.4-CVE-2026-73076.patch
 
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python-devel ncurses-devel gettext perl-devel
@@ -1496,6 +1509,18 @@ perl -pi -e "s,bin/nawk,bin/awk,g" runtime/tools/mve.awk
 %patch3022 -p1 -b .unclosed-gvim-high-cpu
 
 %patch4000 -p1 -b .CVE-2026-25749
+%patch4001 -p1
+%patch4002 -p1
+%patch4003 -p1
+%patch4004 -p1
+%patch4005 -p1
+%patch4006 -p1
+%patch4007 -p1
+%patch4008 -p1
+%patch4009 -p1
+%patch4010 -p1
+%patch4011 -p1
+%patch4012 -p1
 
 perl -pi -e "s/test71.out//" src/testdir/Makefile
 
@@ -1993,6 +2018,12 @@ rm -rf %{buildroot}
 %{_datadir}/icons/hicolor/*/apps/*
 
 %changelog
+* Thu Nov 19 2026 Jeff Uphoff <juphoff@ciq.com> - 2:7.4.629-9.1
+- Remediate CVE-2026-26269, CVE-2026-33412, CVE-2026-41411, CVE-2026-43961,
+  CVE-2026-46483, CVE-2026-47162, CVE-2026-47167, CVE-2026-52858,
+  CVE-2026-57456, CVE-2026-59858, CVE-2026-73073, CVE-2026-73076,
+  CVE-2026-73078
+
 * Thu Mar 26 2026 Pratham Patel <ppatel@ciq.com> - 2:7.4.629-9
 - Remediate CVE-2026-25749
 
